@@ -9,6 +9,7 @@ A reproducible, local-first research workbench and analytical query engine for e
 ## The Problem It Solves
 
 Lunar geochemistry spans over five decades of analytical data across Apollo missions, Luna sample returns, and lunar meteorites. When aggregating this data, traditional compilations often suffer from:
+
 1. **Artificial Compositional Averaging**: Blending multiple distinct analyses into synthetic "average sample compositions" that obscure intra-sample heterogeneity, mineral zoning, and experimental variance.
 2. **Loss of Analytical Lineage**: Detaching reported values from their instrumental method (EPMA, XRF, INAA, ICP-MS), reporting laboratory, uncertainty estimates, and primary literature citations.
 3. **Imputation Hazards**: Substituting missing values with zeros, inferring unverified detection limits, or guessing mission metadata from ambiguous sample names.
@@ -33,28 +34,33 @@ Lunar geochemistry spans over five decades of analytical data across Apollo miss
 ## Visual Showcase
 
 ### Geochemical Workbench
+
 Pair any two chemical variables across identical analytical runs. Interactive scatter plots render without downsampling, allowing researchers to click individual data points and inspect sample provenance, reported units, and literature citations.
 
 ![Geochemical Workbench](docs/screenshots/workbench.png)
 
 ### Rare-Earth Element (REE) Laboratory
+
 Compare raw ppm rare-earth element abundances (La → Lu) on a logarithmic scale across multiple analyses. Gaps are faithfully left open where elements were unmeasured, ensuring no artificial interpolation is introduced.
 
 ![REE Laboratory](docs/screenshots/ree-laboratory.png)
 
 ### Basalt Observatory (Neal & Taylor 1992)
+
 Curated whole-rock mare basalt cohort comparing reported TiO₂ against total iron (858 analyses) and MgO (865 analyses), stratified by established petrological Ti thresholds.
 
 ![Basalt Observatory](docs/screenshots/basalt-observatory.png)
 
 ### Sample Explorer & Analytical History
+
 Navigate physical lunar specimens by exact source label, following each physical sample through its individual analyses, mineral phases, and primary publication sources.
 
-| Sample Explorer | Sample Measurement Detail |
-| :---: | :---: |
+|                     Sample Explorer                      |              Sample Measurement Detail               |
+| :------------------------------------------------------: | :--------------------------------------------------: |
 | ![Sample Explorer](docs/screenshots/sample-explorer.png) | ![Sample Detail](docs/screenshots/sample-detail.png) |
 
 ### Data Quality Observatory
+
 Inspect reported unit coverage (wt%, ppm, vol%, mol%, per mil), quality flags, and source validation warnings.
 
 ![Data Quality Observatory](docs/screenshots/data-quality.png)
@@ -86,10 +92,12 @@ lunar-geochem-lab/
 ## Quick Start
 
 ### 1. Prerequisites
+
 - Python 3.10 or later
 - Node.js 18+ (optional, for development syntax validation and headless screenshot capture)
 
 ### 2. Environment Setup
+
 Clone the repository and install the analytical dependency:
 
 ```bash
@@ -102,6 +110,7 @@ pip install -e .
 ```
 
 ### 3. Acquire and Process Dataset
+
 Download the official Astromat lunar dataset (5.45 MB compressed archive containing the 230 MB CSV) and stream it into normalized tables:
 
 ```bash
@@ -112,9 +121,10 @@ python -m lunar_lab.ingest download --directory data/raw --format tar.gz --accep
 python -m lunar_lab.ingest process data/raw/all_dataset_3696.tar.gz --output data/processed
 ```
 
-*Note: Processing is deterministic and idempotent. If the archive checksum and ETL version match the manifest, existing verified outputs are reused.*
+_Note: Processing is deterministic and idempotent. If the archive checksum and ETL version match the manifest, existing verified outputs are reused._
 
 ### 4. Run the Research Console
+
 Start the local server:
 
 ```bash
@@ -129,21 +139,21 @@ Open your browser at **`http://127.0.0.1:8000`** (or specify a custom port using
 
 The local server exposes a read-only, parameterized JSON API under `/api/v1/`:
 
-| Endpoint | Method | Query Parameters | Description |
-| :--- | :--- | :--- | :--- |
-| `/api/v1/health` | `GET` | — | Health check and dataset load status. |
-| `/api/v1/datasets` | `GET` | — | Provenance metadata and processing manifest. |
-| `/api/v1/overview` | `GET` | — | Summary counts, unit distributions, and material types. |
-| `/api/v1/samples` | `GET` | `q`, `subtype`, `material`, `page`, `page_size` | Paginated search across exact source sample labels. |
-| `/api/v1/samples/<id>` | `GET` | — | Specimen metadata and analytical counts. |
-| `/api/v1/samples/<id>/analyses` | `GET` | `limit` | Individual source analyses associated with a specimen. |
-| `/api/v1/samples/<id>/measurements`| `GET` | `analysis_id`, `limit` | Reported values, units, methods, labs, and uncertainties. |
-| `/api/v1/species` | `GET` | `q`, `unit` | Catalog of chemical species with measurement counts. |
-| `/api/v1/facets` | `GET` | — | Available classifications, materials, and units. |
-| `/api/v1/query/observations` | `GET` | `x`, `y`, `subtype`, `material`, `limit` | Paired measurements joined strictly within the same analysis. |
-| `/api/v1/analysis/ree` | `GET` | `analysis_ids` | Raw REE abundances (ppm) ordered La through Lu. |
-| `/api/v1/analysis/basalts` | `GET` | `group`, `subtype` | Whole-rock mare basalts with Neal & Taylor Ti tiers. |
-| `/api/v1/data-quality` | `GET` | — | Measurement status, zero counts, and quality flags. |
+| Endpoint                            | Method | Query Parameters                                | Description                                                   |
+| :---------------------------------- | :----- | :---------------------------------------------- | :------------------------------------------------------------ |
+| `/api/v1/health`                    | `GET`  | —                                               | Health check and dataset load status.                         |
+| `/api/v1/datasets`                  | `GET`  | —                                               | Provenance metadata and processing manifest.                  |
+| `/api/v1/overview`                  | `GET`  | —                                               | Summary counts, unit distributions, and material types.       |
+| `/api/v1/samples`                   | `GET`  | `q`, `subtype`, `material`, `page`, `page_size` | Paginated search across exact source sample labels.           |
+| `/api/v1/samples/<id>`              | `GET`  | —                                               | Specimen metadata and analytical counts.                      |
+| `/api/v1/samples/<id>/analyses`     | `GET`  | `limit`                                         | Individual source analyses associated with a specimen.        |
+| `/api/v1/samples/<id>/measurements` | `GET`  | `analysis_id`, `limit`                          | Reported values, units, methods, labs, and uncertainties.     |
+| `/api/v1/species`                   | `GET`  | `q`, `unit`                                     | Catalog of chemical species with measurement counts.          |
+| `/api/v1/facets`                    | `GET`  | —                                               | Available classifications, materials, and units.              |
+| `/api/v1/query/observations`        | `GET`  | `x`, `y`, `subtype`, `material`, `limit`        | Paired measurements joined strictly within the same analysis. |
+| `/api/v1/analysis/ree`              | `GET`  | `analysis_ids`                                  | Raw REE abundances (ppm) ordered La through Lu.               |
+| `/api/v1/analysis/basalts`          | `GET`  | `group`, `subtype`                              | Whole-rock mare basalts with Neal & Taylor Ti tiers.          |
+| `/api/v1/data-quality`              | `GET`  | —                                               | Measurement status, zero counts, and quality flags.           |
 
 ---
 
@@ -183,13 +193,13 @@ node --check app.js
 
 ## Data Source & Attribution
 
-- **Dataset**: *Astromat Synthesis Compilation: Lunar samples v.1 February 2025*
+- **Dataset**: _Astromat Synthesis Compilation: Lunar samples v.1 February 2025_
 - **Release Version**: 1.0 (2025-02-26)
 - **DOI**: [10.60520/IEDA/113696](https://doi.org/10.60520/IEDA/113696)
 - **Repository Record**: [EarthChem Library dataset 3696](https://ecl.earthchem.org/view.php?id=3696)
 - **Data License**: [Creative Commons Attribution 4.0 International (CC-BY-4.0)](https://creativecommons.org/licenses/by/4.0/)
 
-*When publishing research derived from this workbench, cite the Astromat release DOI and the primary literature sources identified in the inspection panel.*
+_When publishing research derived from this workbench, cite the Astromat release DOI and the primary literature sources identified in the inspection panel._
 
 ---
 
