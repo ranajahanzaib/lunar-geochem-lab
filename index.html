@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#101616">
+    <title>Lunar Geochemistry Lab</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+
+  <body>
+    <div class="shell">
+      <aside class="rail" aria-label="Main navigation">
+        <a class="brand" href="#overview" data-view="overview" aria-label="Lunar Geochemistry Lab home"><span
+            class="brand-mark">◒</span><span class="brand-name">LUNAR<br>GEOCHEM</span></a>
+        <div class="rail-label">RESEARCH</div>
+        <nav id="nav">
+          <button class="nav-item active" data-view="overview"><span>⌂</span> Overview</button>
+          <button class="nav-item" data-view="samples"><span>◉</span> Sample explorer</button>
+          <button class="nav-item" data-view="workbench"><span>⌁</span> Workbench</button>
+          <button class="nav-item" data-view="ree"><span>〰</span> REE laboratory</button>
+          <button class="nav-item" data-view="basalts"><span>◈</span> Basalt observatory</button>
+          <button class="nav-item" data-view="quality"><span>▦</span> Data quality</button>
+        </nav>
+        <div class="rail-bottom">
+          <div class="dataset-state"><i></i><span>Astromat v1 loaded</span></div><button id="theme-toggle"
+            class="icon-button" aria-label="Toggle theme">◐</button>
+        </div>
+      </aside>
+      <main>
+        <header class="topbar">
+          <div class="crumb"><span>RESEARCH CONSOLE</span><b>/</b><strong id="crumb-current">Overview</strong></div>
+          <div class="top-actions"><span class="release-chip"><i></i> ASTROMAT DATA · LOCAL</span><button
+              class="quiet-button" id="open-method">Methodology</button><button class="user-mark"
+              aria-label="Local workspace">LG</button></div>
+        </header>
+        <section class="content" id="view-root"></section>
+      </main>
+    </div>
+    <dialog id="method-dialog">
+      <div class="dialog-head">
+        <div>
+          <div class="eyebrow">DATA METHODS</div>
+          <h2>Methodology & provenance</h2>
+        </div><button class="icon-button" data-close aria-label="Close">×</button>
+      </div>
+      <div class="dialog-body">
+        <p>The primary source is the Astromat Synthesis Compilation: Lunar samples v.1, February 2025 (DOI <a
+            href="https://doi.org/10.60520/IEDA/113696" target="_blank" rel="noreferrer">10.60520/IEDA/113696</a>). Its
+          archive is CC-BY-4.0. The downloaded source archive is checksum-verified and preserved locally. Ingestion
+          creates one analysis per source row, normalized DuckDB and Parquet tables, and a provenance manifest. Major
+          oxides, trace elements, isotopes, methods, citations, and reported uncertainty fields are available where
+          present in the source.</p>
+        <p>Mission and detection-limit fields are absent from the release and are never inferred. REE patterns remain
+          raw because this source release does not include a vetted normalization table. Every plotted pair comes from
+          the same source analysis.</p>
+        <p>Ti classes follow Neal & Taylor (1992), applied only to eligible bulk mare basalts: very low-Ti &lt;1 wt%
+          TiO₂; low-Ti 1–6 wt%; high-Ti &gt;6 wt%. Blank cells remain missing. Populated values that are not numeric are
+          retained as quality flags and excluded from numeric analysis; the source does not provide a separate censoring
+          qualifier.</p>
+        <p class="source-link"><a href="https://ecl.earthchem.org/view.php?id=3696" target="_blank"
+            rel="noreferrer">Open official dataset record ↗</a></p>
+      </div>
+    </dialog>
+    <script src="/app.js" defer></script>
+  </body>
+
+</html>
