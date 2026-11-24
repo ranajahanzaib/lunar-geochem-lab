@@ -1,10 +1,9 @@
-Fixes #<issue_number_goes_here>
+## Description
 
-> It's a good idea to open an issue first for discussion.
+Summarize the change and its motivation. Link any related issue when applicable.
 
-**Description**
-A brief summary of what this PR does and why.
+## Checklist
 
-- [ ] Tests pass
-- [ ] README updated if needed
-- [ ] No breaking changes (or described below)
+- [ ] Automated checks pass
+- [ ] Documentation is updated when needed
+- [ ] Breaking changes and limitations are described

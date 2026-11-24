@@ -2,8 +2,6 @@
 
 ## Reporting a Vulnerability
 
-Please do not report security vulnerabilities through public GitHub issues.
+Please do not report security vulnerabilities through public GitHub issues. Use the repository’s [private Security Advisories](https://github.com/ranajahanzaib/lunar-geochem-lab/security/advisories/new) feature.
 
-Instead, report them via GitHub's private [Security Advisories](../../security/advisories/new) feature. Include as much detail as possible: a description of the issue, steps to reproduce, and potential impact.
-
-You can expect an acknowledgment within 48 hours and a resolution timeline once the issue is confirmed.
+Include the affected version, steps to reproduce the issue, and its potential impact. Do not include access tokens, passwords, or other secrets in a report. Response and remediation times depend on the nature and severity of the issue; no fixed response-time commitment is offered.

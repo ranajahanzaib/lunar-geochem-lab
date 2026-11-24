@@ -1,46 +1,38 @@
-## Contributing
+# Contributing
 
-We welcome contributions of all kinds to improve this project! Here's how you can get involved:
+Contributions that improve the software, documentation, data provenance, or scientific reliability are welcome. For substantial changes, open an issue first so the proposed scope can be discussed.
 
-1. **Fork the Repository**: Start by forking the repository to your GitHub account.
+## Development setup
 
-2. **Clone Your Fork**: Clone the forked repository to your local machine:
+```bash
+git clone https://github.com/ranajahanzaib/lunar-geochem-lab.git
+cd lunar-geochem-lab
+python3 -m venv .venv
+.venv/bin/python -m pip install -e .
+```
 
-   ```bash
-   git clone <repo_url>
-   cd repo_dir
-   ```
+The application uses the official Astromat dataset, which is not included in the repository. Follow the acquisition instructions in the README only after reviewing the dataset's license and terms.
 
-3. **Create a Branch**: Create a new branch for your feature or bug fix:
+## Checks
 
-   ```bash
-   git checkout -b feature-name
-   ```
+Run the automated checks before opening a pull request:
 
-4. **Make Changes**: Make your changes to the codebase. Be sure to follow existing code style and conventions.
+```bash
+.venv/bin/python -m unittest discover -s tests -v
+.venv/bin/python -m py_compile server.py lunar_lab/*.py tests/*.py
+node --check app.js
+git diff --check
+```
 
-5. **Commit Changes**: Commit your changes with a clear and descriptive message:
+## Scientific and data guidelines
 
-   ```bash
-   git commit -m "Add detailed description of the changes"
-   ```
+- Preserve source records, reported units, analytical context, and provenance.
+- Keep missing measurements distinct from measured zeroes and invalid values.
+- Do not combine observations from separate analyses into synthetic compositions.
+- Cite sources for added datasets, reference compositions, and classification schemes.
+- Add deterministic tests for scientific calculations and data handling.
+- Do not commit downloaded datasets, generated databases, credentials, or local environment files.
 
-6. **Push Changes**: Push your changes to your fork:
+## Pull requests
 
-   ```bash
-   git push origin feature-name
-   ```
-
-7. **Submit a Pull Request**: Open a pull request from your branch to the main repository's branch. Include a detailed description of your changes and the problem they solve.
-
-8. **Review and Feedback**: Participate in the review process. Make any requested changes, and your contribution will be merged!
-
-### Guidelines
-
-- Ensure your code follows the existing style and conventions.
-- Include tests for any new functionality or bug fixes.
-- Write clear, concise commit messages and pull request descriptions.
-
-### Issues
-
-Feel free to report bugs or suggest enhancements by creating an issue. Be sure to include detailed information about the problem and, if possible, steps to reproduce it.
+Describe the change, its motivation, and any scientific assumptions. Include the checks you ran and note any known limitations. Keep each pull request focused and update the README when user-facing behavior or setup changes.
