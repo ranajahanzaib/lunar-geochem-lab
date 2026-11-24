@@ -291,7 +291,7 @@ class ApiHandler(SimpleHTTPRequestHandler):
             count(*) FILTER (WHERE standardized_value=0) measured_zero_count
             FROM measurements""")
         units = self._all("SELECT unit, count(*) measurement_count, count(DISTINCT species_id) species_count FROM measurements GROUP BY unit ORDER BY measurement_count DESC")
-        methods = self._all("SELECT coalesce(nullif(method,''),'Not reported') method, count(*) measurement_count FROM measurements GROUP BY 1 ORDER BY measurement_count DESC LIMIT 30")
+        methods = self._all("SELECT coalesce(nullif(method,''),'Not reported') AS measurement_method, count(*) measurement_count FROM measurements GROUP BY 1 ORDER BY measurement_count DESC LIMIT 30")
         flags = self._all("SELECT flag_type, severity, count(*) count FROM quality_flags GROUP BY 1,2 ORDER BY severity, count DESC")
         warnings = json.loads(MANIFEST.read_text()).get("validation_warnings", []) if MANIFEST.exists() else []
         self._send_json({"counts": counts, "units": units, "methods": methods, "flags": flags, "warnings": warnings})
