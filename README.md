@@ -161,8 +161,8 @@ The local server exposes a read-only, parameterized JSON API under `/api/v1/`:
 
 The package includes auditable scientific calculation helpers in `lunar_lab/science.py`:
 
-- **Magnesium Number ($Mg\#$)**: Molar ratio of $MgO$ to total iron ($FeO_T$):
-  $$\text{Mg}\# = 100 \times \frac{\text{MgO} / 40.3044}{(\text{MgO} / 40.3044) + (\text{FeO}_T / 71.844)}$$
+- **Magnesium Number (`Mg#`)**: Molar ratio of $MgO$ to total iron ($FeO_T$):
+  $$\mathrm{Mg\#} = 100 \times \frac{\mathrm{MgO} / 40.3044}{(\mathrm{MgO} / 40.3044) + (\mathrm{FeO}_T / 71.844)}$$
 - **Rare-Earth Element Anomalies**: Geometric interpolation over chondrite-normalized abundances:
   $$\text{Eu} / \text{Eu}^* = \frac{\text{Eu}_N}{\sqrt{\text{Sm}_N \times \text{Gd}_N}}, \quad \text{Ce} / \text{Ce}^* = \frac{\text{Ce}_N}{\sqrt{\text{La}_N \times \text{Pr}_N}}$$
 - **Ternary Composition Closure**: Validates non-negativity and strictly normalizes components $(a, b, c)$ to unit sum:
@@ -203,9 +203,14 @@ _When publishing research derived from this workbench, cite the Astromat release
 
 ---
 
-## License & Author
+## License & Custom Work
 
-- **Software License**: [MIT License](LICENSE). Free for personal, academic, and commercial use.
-- **Author**: Rana Jahanzaib
-- **Contact & Custom Implementations**: [work@withrana.com](mailto:work@withrana.com)
-- **Professional Profiles**: [![LinkedIn](https://img.shields.io/badge/LinkedIn-workwithrana-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/workwithrana) [![Upwork](https://img.shields.io/badge/Upwork-Hire%20Me-14A800?style=flat&logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/~01bbcf6edb91a8df5f) [![Contra](https://img.shields.io/badge/Contra-Hire%20Me-000000?style=flat)](https://contra.com/ranajahanzaib/)
+[![Hire me](https://img.shields.io/badge/Open%20to%20work-work%40withrana.com-brightgreen)](mailto:work@withrana.com) [![LinkedIn](https://img.shields.io/badge/LinkedIn-workwithrana-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/workwithrana)
+[![Upwork](https://img.shields.io/badge/Upwork-Hire%20Me-14A800?style=flat&logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/~01bbcf6edb91a8df5f)
+[![Contra](https://img.shields.io/badge/Contra-Hire%20Me-000000?style=flat)](https://contra.com/ranajahanzaib/)
+
+**License:** MIT, see [LICENSE](LICENSE). Free for personal and commercial use.
+
+**Author:** Rana Jahanzaib
+
+**Need this built for your stack?** Email me what you're working on: work@withrana.com
